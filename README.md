@@ -11,7 +11,7 @@ This demo is also using react-native-webrtc : https://github.com/oney/react-nati
 - Open this [link](https://apirtc.com/tutos/Video_client_Material/apiRTC-Material-Client-Video.html) with Chrome to exchange with your mobile over WebRTC
 
 ## ApiRTC key
-For this demo we use the Api key "myDemoApiKey". Please register on our website to get your private api key.
+For this demo we use the ApiKey "myDemoApiKey". Please register on our website to get your private ApiKey.
 
 ## Compatibility
 - Only iOS is supported in this first version
