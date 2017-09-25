@@ -423,6 +423,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		223F8AF31F794880000D426E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				22F45B71986342AC8785E4BC /* libRNDeviceInfo.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +487,7 @@
 				00E356EF1AD99517003FC87E /* reactNativeApiRTCTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				B645A6741F6C0DA500248592 /* Frameworks */,
+				223F8AF31F794880000D426E /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

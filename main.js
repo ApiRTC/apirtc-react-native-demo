@@ -17,7 +17,7 @@ import {
   RTCView
 } from 'react-native-webrtc';
 
-require('./apiRTC-React-3.14.min.debug.js');
+require('./apiRTC-React-3.14.debug.js');
 
 const Item = Picker.Item;
 let callId = 0;
@@ -68,7 +68,7 @@ function updateAddressBook () {
       //Checking if connectedUser is not current user befire adding in addressBook list
       if (connectedUsersList[i].userId !== apiRTC.session.apiCCId) {
           options.push(connectedUsersList[i].userId);
-          container.onValueChange (connectedUsersList[i].userId, connectedUsersList[i].userId) 
+          container.onValueChange (connectedUsersList[i].userId, connectedUsersList[i].userId)
       }
     }
   }
@@ -91,7 +91,7 @@ React.onSessionReady = function(type, detail) {
 //apiRTC initialization
 apiRTC.init({
   apiKey : "myDemoApiKey",
-  //apiCCId : 5555
+  apiCCId :123456
 });
 
 function mapHash(hash, func) {
@@ -146,7 +146,7 @@ const reactNativeApiRTC = React.createClass({
               selectedValue={this.state.selected1}
               onValueChange={this.onValueChange.bind(this, 'selected1')}>
               {options.map((item, index) => {
-                return (<Item label={item} value={item} key={item}/>) 
+                return (<Item label={item} value={item} key={item}/>)
               })}
             </Picker>
             <TouchableHighlight
