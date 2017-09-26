@@ -1,4 +1,5 @@
 node_modules/*
+ios/build/*
 ios/.DS_Store
 ios/reactNativeApiRTC/.DS_Store
 .DS_Store

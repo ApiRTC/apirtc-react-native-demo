@@ -86,11 +86,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		V6BDHpI4lmPbMFgIRuEOIABfe3Y=
+		1oa2LVQ7syMrpLxohdc5DDPxK0w=
 		</data>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		yYAb213PZk6OE00zTbiJ5+rTfs4=
+		M9wAfEHBEviIh+htookTNEAJyAY=
 		</data>
 		<key>Frameworks/WebRTC.framework/Info.plist</key>
 		<data>
@@ -359,22 +359,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			V6BDHpI4lmPbMFgIRuEOIABfe3Y=
+			1oa2LVQ7syMrpLxohdc5DDPxK0w=
 			</data>
 			<key>hash2</key>
 			<data>
-			tVWAUUhQQ2PRSaabbojXlktE9/obfSBRDc4gsHgKOAY=
+			JWPMyWI2GCm5f+g4x/cSJ5RklRwFup09hdYI9XQrWvA=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yYAb213PZk6OE00zTbiJ5+rTfs4=
+			M9wAfEHBEviIh+htookTNEAJyAY=
 			</data>
 			<key>hash2</key>
 			<data>
-			qaHP6Npz8svBDA1FgNiw3O2CWU4Hz3prR1JvntFhyWU=
+			243tSsSvSiywqaPyZ/W1YVGOz6kPl3Dm5i9DadRQZXw=
 			</data>
 		</dict>
 		<key>Frameworks/WebRTC.framework/Info.plist</key>
