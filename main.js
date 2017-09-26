@@ -1,206 +1,183 @@
 'use strict';
-
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-  TextInput,
-  ListView,
-  Platform,
-  Picker,
-} from 'react-native';
-
-import {
-  RTCView
-} from 'react-native-webrtc';
+import { AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { RTCView } from 'react-native-webrtc';
 
 require('./apiRTC-React-3.14.debug.js');
 
-const Item = Picker.Item;
-let callId = 0;
-let webRTCClient = null;
-let callNumber = 0;
-let options =["No other connected user"];
-let container;
 
-function setInitialState() {
-  container.setState({status: 'ready', info: 'Select the destination number and Press "Video Call"'});
-  const remoteList = container.state.remoteList;
-  delete remoteList[callId];
-  container.setState({ remoteList: remoteList });
-  container.setState({selfViewSrc: undefined});
-}
-
-React.onHangup = function(type, detail) {
-  setInitialState();
-};
-
-React.onIncomingCall = function(type, detail) {
-  container.setState({status: 'connect', info: 'Incoming call from :' + detail.callerId});
-};
-
-React.onUserMediaSuccess = function(type, detail) {
-  container.setState({selfViewSrc: detail.stream.toURL()});
-};
-
-React.onRemoteStreamAdded = function(type, detail) {
-  container.setState({info: 'Call established'});
-  const remoteList = container.state.remoteList;
-  remoteList[callId] = detail.stream.toURL();
-  container.setState({ remoteList: remoteList });
-};
-
-function updateAddressBook () {
-
-  console.log('updateAddressBook');
-  var connectedUsersList = apiRTC.session.getConnectedUsersList(),
-    length = connectedUsersList.length,
-    i = 0;
-
-  if (connectedUsersList.length !== 0) {
-    //Cleaning addressBook list
-    options =[];
-
-    for (i = 0; i < length; i += 1) {
-      //Checking if connectedUser is not current user befire adding in addressBook list
-      if (connectedUsersList[i].userId !== apiRTC.session.apiCCId) {
-          options.push(connectedUsersList[i].userId);
-          container.onValueChange (connectedUsersList[i].userId, connectedUsersList[i].userId)
-      }
-    }
-  }
-}
-
-React.onConnectedUsersListUpdate = function(type, detail) {
-  console.log('onConnectedUsersListUpdate');
-  updateAddressBook ();
-};
-
-React.onSessionReady = function(type, detail) {
-  console.log('sessionReadyHandler :' + apiRTC.session.apiCCId);
-  //webRTC Client creation
-  webRTCClient = apiRTC.session.createWebRTCClient({
-    //status : "status" //Optionnal
-  });
-  container.setState({status: 'ready', info: 'Select the destination number and Press "Video Call"'});
-};
-
-//apiRTC initialization
-apiRTC.init({
-  apiKey : "myDemoApiKey",
-  apiCCId :123456
-});
-
-function mapHash(hash, func) {
-  const array = [];
-  for (const key in hash) {
-    const obj = hash[key];
-    array.push(func(obj, key));
-  }
-  return array;
-}
-
-const reactNativeApiRTC = React.createClass({
-  getInitialState: function() {
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
-    return {
-      info: 'Initializing',
-      status: 'init',
-      selfViewSrc: null,
-      remoteList: {},
-      selected1: 'key1',
-    };
-  },
-  componentDidMount: function() {
-    container = this;
-  },
-  _call(event) {
-    this.setState({status: 'connect', info: 'Connecting'});
-    callId = webRTCClient.call(callNumber);
-  },
-  _hangup(event) {
-    webRTCClient.hangUp();
-    setInitialState();
-  },
-  onValueChange (key: string, value: string) {
-    console.log('onValueChange');
-    const newState = {};
-    newState[key] = value;
-    callNumber = value;
-    this.setState(newState);
-  },
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          {this.state.info}
-        </Text>
-        { this.state.status == 'ready' ?
-          (<View>
-            <Picker
-              style={styles.picker}
-              mode="dropdown"
-              selectedValue={this.state.selected1}
-              onValueChange={this.onValueChange.bind(this, 'selected1')}>
-              {options.map((item, index) => {
-                return (<Item label={item} value={item} key={item}/>)
-              })}
-            </Picker>
-            <TouchableHighlight
-              onPress={this._call}>
-              <Text style={styles.welcome}>Video Call</Text>
-            </TouchableHighlight>
-          </View>) : null
-        }
-        { this.state.status != 'ready' ?
-          (<RTCView streamURL={this.state.selfViewSrc} style={styles.selfView}/>) : null
-        }
-        {
-          mapHash(this.state.remoteList, function(remote, index) {
-            return <RTCView key={index} streamURL={remote} style={styles.remoteView}/>
-          })
-        }
-        { this.state.status == 'connect' ?
-          (<TouchableHighlight
-            onPress={this._hangup}>
-            <Text style={styles.welcome}>Hangup</Text>
-          </TouchableHighlight>) : null
-        }
-      </View>
-    );
-  }
-});
 
 const styles = StyleSheet.create({
+	container: {
+		width: '100%',
+		height: '100%',
+		padding: 15,
+		backgroundColor: 'white'
+	},
+  picker: {},
+  remoteView: {
+    width: 200,
+    height: 150
+  },
   selfView: {
     width: 200,
     height: 150,
-  },
-  remoteView: {
-    width: 200,
-    height: 150,
-    //width: config.screenWidth,
-    //height: config.screenHeight
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
-    margin: 10,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  listViewContainer: {
-    height: 150,
-  },
-  picker: {
-  },
+  }
 });
+
+
+
+const initialState = {
+	info: 'Select the destination number and Press "Video Call"',
+	status: 'ready',
+	selfViewSrc: null,
+	remoteList: new Map(),
+	connectedUsersList: [],
+	selected: 'key1',
+	callId: 0
+};
+
+class reactNativeApiRTC extends Component {
+
+
+	constructor (props) {
+		super(props);
+    this.webRTCClient = null;
+		this.state = initialState;
+
+		React.onSessionReady = this._onSessionReady.bind(this);
+		React.onConnectedUsersListUpdate = this._onConnectedUsersListUpdate.bind(this);
+		React.onUserMediaSuccess = this._onUserMediaSuccess.bind(this);
+		React.onRemoteStreamAdded = this._onRemoteStreamAdded.bind(this);
+		React.onIncomingCall = this._onIncomingCall.bind(this);
+		React.onHangup = this._onHangup.bind(this);
+
+		this._call = this._call.bind(this);
+		this._hangup = this._hangup.bind(this);
+		this._manageHangup = this._manageHangup.bind(this);
+	}
+
+  componentDidMount () {
+    //apiRTC initialization
+    apiRTC.init({
+    	apiKey: 'myDemoApiKey',
+    	apiCCId: 123456
+    });
+  }
+
+  componentWillUnmount () {
+    //apiRTC initialization
+    apiRTC.disconnect();
+  }
+
+	_onSessionReady () {
+		console.log('_onSessionReady :' + apiRTC.session.apiCCId);
+		this.webRTCClient = apiRTC.session.createWebRTCClient({});
+		this.setState({status: 'ready', info: 'Select the destination number and Press "Video Call"'});
+	}
+
+	_onConnectedUsersListUpdate () {
+	  console.log('_onConnectedUsersListUpdate');
+	  this.setState({ connectedUsersList: apiRTC.session.getConnectedUsersList().map(user => user.userId).filter(id => id !== apiRTC.session.apiCCId) });
+	}
+
+	_onUserMediaSuccess (type, detail) {
+	  console.log('_onUserMediaSuccess - type = ', type);
+	  this.setState({ selfViewSrc: detail.stream.toURL() });
+	}
+
+	_onRemoteStreamAdded (type, detail) {
+	  console.log('_onRemoteStreamAdded - type = ', type);
+		this.setState({ info: 'Call established', remoteList: this.state.remoteList.set(this.state.callId, detail.stream.toURL()) });
+	}
+
+	_onIncomingCall (type, detail) {
+	  console.log('_onIncomingCall - type = ', type);
+	  this.setState({ status: 'connect', info: 'Incoming call from :' + detail.callerId });
+	};
+
+	_onHangup (type, detail) {
+	  console.log('_onHangup - type = ', type);
+		console.log('_onHangup - detail = ', detail);
+	  this._manageHangup();
+	};
+
+  _call () {
+    this.setState({ status: 'connect', info: 'Connecting' });
+    const callId = this.webRTCClient.call(this.state.selected);
+		this.setState({ callId });
+  }
+
+  _hangup() {
+    this.webRTCClient.hangUp();
+    this._manageHangup();
+  }
+
+  _manageHangup() {
+    const remoteList = this.state.remoteList;
+    remoteList.delete(this.state.callId);
+    this.setState({
+			status: 'ready',
+			info: 'Select the destination number and Press "Video Call"',
+			remoteList,
+			selfViewSrc: undefined
+		});
+  }
+
+	render () {
+
+		function renderPicker (ctx) {
+			if (ctx.state.status !== 'ready') return null;
+			return (
+				<View>
+					<Picker
+						style={ styles.picker }
+						mode='dropdown'
+						selectedValue={ ctx.state.selected }
+						onValueChange={ itemValue => ctx.setState({ selected: itemValue }) }>
+						{ ctx.state.connectedUsersList.length !== 0 ? ctx.state.connectedUsersList.map(item => <Picker.Item label={ item } value={ item } key={ item }/>) : [ <Picker.Item label={ 'No other connected user' } value={ 'No other connected user' } key={ 'noOtherConnectedUser' }/> ] }
+					</Picker>
+					<TouchableHighlight onPress={ ctx._call }>
+						<Text style={ styles.welcome }>Video Call</Text>
+					</TouchableHighlight>
+				</View>
+			);
+		}
+
+		function renderSelfView (ctx) {
+			if (ctx.state.status !== 'ready') return null;
+			return <RTCView streamURL={ ctx.state.selfViewSrc } style={ styles.selfView }/>
+		}
+
+		function renderRemoteViews (ctx) {
+			return Array.from(ctx.state.remoteList.values()).map((value, index) => <RTCView key={ index } streamURL={ value } style={ styles.remoteView }/>);
+		}
+
+		function renderHangUp (ctx) {
+			if (ctx.state.status !== 'connect') return null;
+			return (
+				<TouchableHighlight onPress={ ctx._hangup }>
+					<Text style={ styles.welcome }>Hangup</Text>
+				</TouchableHighlight>
+			);
+		}
+
+		return (
+			<View style={ styles.container }>
+				<Text style={ styles.welcome }>{ this.state.info }</Text>
+				{ renderPicker(this) }
+				{ renderSelfView(this) }
+				{ renderRemoteViews(this) }
+				{ renderHangUp(this) }
+			</View>
+		);
+	}
+}
+
 
 AppRegistry.registerComponent('reactNativeApiRTC', () => reactNativeApiRTC);
