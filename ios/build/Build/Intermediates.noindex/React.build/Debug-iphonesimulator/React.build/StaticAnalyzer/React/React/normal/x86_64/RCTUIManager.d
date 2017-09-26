@@ -27,6 +27,8 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTAccessibilityManager.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTBridge+Private.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTComponentData.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTLayoutAnimation.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTLayoutAnimationGroup.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTModuleData.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTModuleMethod.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTBridgeMethod.h \
@@ -37,4 +39,6 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTRootShadowView.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTShadowView.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTRootViewInternal.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTScrollableProtocol.h
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTScrollableProtocol.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTShadowView+Hierarchy.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTUIManagerObserverCoordinator.h

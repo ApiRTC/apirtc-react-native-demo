@@ -33,6 +33,7 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDivisionAnimatedNode.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTEventAnimation.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTFrameAnimation.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTDecayAnimation.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTInterpolationAnimatedNode.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTModuloAnimatedNode.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTMultiplicationAnimatedNode.h \

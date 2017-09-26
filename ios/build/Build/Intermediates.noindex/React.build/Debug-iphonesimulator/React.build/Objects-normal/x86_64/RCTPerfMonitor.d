@@ -29,4 +29,4 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/UIView+React.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/RCTComponent.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTBridge+Private.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTDevMenu.h
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/DevSupport/RCTDevMenu.h

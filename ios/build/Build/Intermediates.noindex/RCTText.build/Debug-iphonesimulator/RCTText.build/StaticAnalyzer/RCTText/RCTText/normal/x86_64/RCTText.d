@@ -6,6 +6,8 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/Text/RCTShadowText.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTShadowView.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
@@ -16,6 +18,4 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h

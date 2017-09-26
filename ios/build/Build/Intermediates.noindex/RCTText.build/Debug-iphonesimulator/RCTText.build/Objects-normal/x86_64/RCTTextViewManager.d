@@ -24,9 +24,12 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFont.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTShadowView+Layout.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTShadowView.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/Text/RCTConvert+Text.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/Text/RCTShadowTextView.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/Text/RCTTextView.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTView.h
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTView.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/Text/RCTTextInput.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/Text/RCTBackedTextInputViewProtocol.h

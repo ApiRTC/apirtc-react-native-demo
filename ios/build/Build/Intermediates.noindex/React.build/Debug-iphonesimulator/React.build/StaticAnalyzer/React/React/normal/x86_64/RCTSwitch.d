@@ -10,4 +10,6 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTBridgeModule.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTFrameUpdate.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/UIView+React.h
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h

@@ -20,6 +20,7 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTJSEnvironment.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTModuleData.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Profiler/RCTProfile.h \

@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTDevMenu.m \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Modules/RCTDevMenu.h \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/DevSupport/RCTDevMenu.m \
+  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/DevSupport/RCTDevMenu.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTBridge.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \

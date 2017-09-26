@@ -2,7 +2,6 @@ dependencies: \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/WebSocket/RCTWebSocketObserver.m \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/node_modules/react-native/Libraries/WebSocket/RCTWebSocketObserver.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTWebSocketObserverProtocol.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
   /Users/minhduc/DevProjects/ReactNativeProjects/apiRTC/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \

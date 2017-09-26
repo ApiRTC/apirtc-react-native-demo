@@ -1,29 +1,25 @@
 {
-	"name": "reactNativeApiRTC",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
+  "name": "reactNativeApiRTC",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache clean && npm install",
     "forceClean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache clean --force && npm install"
   },
-	"dependencies": {
-		"react": "16.0.0-alpha.6",
-		"react-native": "0.44.0",
-		"react-native-device-info": "^0.11.0",
-		"react-native-webrtc": "git+https://git@github.com/oney/react-native-webrtc.git#a65a75849a6d72da93577d65cc226642ce4c00c8",
-		"socket.io-client": "1.7.4"
-	},
-	"devDependencies": {
-		"babel-jest": "21.0.2",
-		"babel-preset-react-native": "4.0.0",
-		"jest": "21.1.0",
-		"react-test-renderer": "16.0.0-alpha.6"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "dependencies": {
+    "react": "^16.0.0-alpha.12",
+    "react-native": "^0.48.4",
+    "react-native-device-info": "^0.11.0",
+    "react-native-webrtc": "git+https://git@github.com/oney/react-native-webrtc.git#a65a75849a6d72da93577d65cc226642ce4c00c8",
+    "socket.io-client": "1.7.4"
+  },
+  "devDependencies": {
+    "babel-jest": "21.0.2",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.1.0",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }
