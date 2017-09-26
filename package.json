@@ -6,12 +6,16 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest"
 	},
+  "scripts": {
+    "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache clean && npm install",
+    "forceClean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache clean --force && npm install"
+  },
 	"dependencies": {
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.0",
 		"react-native-device-info": "^0.11.0",
 		"react-native-webrtc": "git+https://git@github.com/oney/react-native-webrtc.git#a65a75849a6d72da93577d65cc226642ce4c00c8",
-		"socket.io-client": "2.0.3"
+		"socket.io-client": "1.7.4"
 	},
 	"devDependencies": {
 		"babel-jest": "21.0.2",
