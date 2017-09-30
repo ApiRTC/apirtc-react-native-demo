@@ -150,7 +150,7 @@ class reactNativeApiRTC extends Component {
 		}
 
 		function renderSelfView (ctx) {
-			if (ctx.state.status !== 'ready') return null;
+			if (ctx.state.status === 'ready') return null;
 			return <RTCView streamURL={ ctx.state.selfViewSrc } style={ styles.selfView }/>
 		}
 
