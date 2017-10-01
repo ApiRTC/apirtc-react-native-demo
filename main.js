@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { RTCView } from 'react-native-webrtc';
 
-require('./apiRTC-React-3.14.debug.js');
-
-
+require('./apiRTC-React-3.14.min.debug.js');
 
 const styles = StyleSheet.create({
 	container: {
@@ -30,10 +28,9 @@ const styles = StyleSheet.create({
   }
 });
 
-
-
 const initialState = {
-	info: 'Select the destination number and Press "Video Call"',
+	initStatus : 'Registration ongoing',
+	info: '',
 	status: 'ready',
 	selfViewSrc: null,
 	remoteList: new Map(),
@@ -43,7 +40,6 @@ const initialState = {
 };
 
 class reactNativeApiRTC extends Component {
-
 
 	constructor (props) {
 		super(props);
@@ -65,8 +61,7 @@ class reactNativeApiRTC extends Component {
   componentDidMount () {
     //apiRTC initialization
     apiRTC.init({
-    	apiKey: 'myDemoApiKey',
-    	apiCCId: 123456
+    	apiKey: 'myDemoApiKey'
     });
   }
 
@@ -78,7 +73,7 @@ class reactNativeApiRTC extends Component {
 	_onSessionReady () {
 		console.log('_onSessionReady :' + apiRTC.session.apiCCId);
 		this.webRTCClient = apiRTC.session.createWebRTCClient({});
-		this.setState({status: 'ready', info: 'Select the destination number and Press "Video Call"'});
+		this.setState({status: 'ready', initStatus : 'You can be reached at this number :' + apiRTC.session.apiCCId , info: 'Select the destination number and Press "Video Call"'});
 	}
 
 	_onConnectedUsersListUpdate () {
@@ -169,6 +164,7 @@ class reactNativeApiRTC extends Component {
 
 		return (
 			<View style={ styles.container }>
+				<Text style={ styles.welcome }>{ this.state.initStatus }</Text>
 				<Text style={ styles.welcome }>{ this.state.info }</Text>
 				{ renderPicker(this) }
 				{ renderSelfView(this) }
@@ -178,6 +174,5 @@ class reactNativeApiRTC extends Component {
 		);
 	}
 }
-
 
 AppRegistry.registerComponent('reactNativeApiRTC', () => reactNativeApiRTC);
