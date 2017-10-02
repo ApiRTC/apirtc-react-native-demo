@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native';
 import { RTCView } from 'react-native-webrtc';
 
 require('./apiRTC-React-3.14.min.debug.js');
@@ -137,9 +137,12 @@ class reactNativeApiRTC extends Component {
 						onValueChange={ itemValue => ctx.setState({ selected: itemValue }) }>
 						{ ctx.state.connectedUsersList.length !== 0 ? ctx.state.connectedUsersList.map(item => <Picker.Item label={ item } value={ item } key={ item }/>) : [ <Picker.Item label={ 'No other connected user' } value={ 'No other connected user' } key={ 'noOtherConnectedUser' }/> ] }
 					</Picker>
-					<TouchableHighlight onPress={ ctx._call }>
-						<Text style={ styles.welcome }>Video Call</Text>
-					</TouchableHighlight>
+					<Button
+  					onPress={ ctx._call }
+  					title="Video Call"
+  					color="#00CC00"
+  					accessibilityLabel="Establish a video call"
+					/>
 				</View>
 			);
 		}
@@ -156,9 +159,12 @@ class reactNativeApiRTC extends Component {
 		function renderHangUp (ctx) {
 			if (ctx.state.status !== 'connect') return null;
 			return (
-				<TouchableHighlight onPress={ ctx._hangup }>
-					<Text style={ styles.welcome }>Hangup</Text>
-				</TouchableHighlight>
+				<Button
+					onPress={ ctx._hangup }
+					title="Hangup"
+					color="#CC0000"
+					accessibilityLabel="Hangup the video call"
+				/>
 			);
 		}
 
