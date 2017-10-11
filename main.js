@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native';
 import { RTCView } from 'react-native-webrtc';
 
-require('./apiRTC-React-3.14.min.debug.js');
+require('./apiRTC-React-latest.min.debug.js');
 
 const styles = StyleSheet.create({
 	container: {
