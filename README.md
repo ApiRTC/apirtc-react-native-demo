@@ -9,7 +9,7 @@ This demo is also using react-native-webrtc : https://github.com/oney/react-nati
 - Clone the repository, run `npm install`.  
 - For iOS, run the project on Xcode : reactNativeApiRTC/ios/reactNativeApiRTC.xcodeproj
 - For Android, run `react-native run-android`
-- Then to establish a first call, open this [link](https://apirtc.com/tutos/Video_client_Material/apiRTC-Material-Client-Video-apiRTC-314.html) with Chrome to exchange with your mobile over WebRTC
+- Then to establish a first call, open this [link](https://apirtc.com/tutos/Video_client_Material/apiRTC-Material-Client-Video.html) with Chrome to exchange with your mobile over WebRTC
 
 ## ApiRTC key
 For this demo we use the ApiKey "myDemoApiKey". Please register on our website to get [your private ApiKey](https://apirtc.com/get-key/)
