@@ -33,7 +33,7 @@ const initialState = {
 	info: '',
 	status: 'ready',
 	selfViewSrc: null,
-	remoteList: new Map(),
+	remoteViewSrc: null,
 	connectedUsersList: [],
 	selected: 'key1',
 	callId: 0
@@ -61,7 +61,7 @@ class reactNativeApiRTC extends Component {
   componentDidMount () {
     //apiRTC initialization
     apiRTC.init({
-    	apiKey: 'myDemoApiKey'
+    	apiKey: 'myDemoApiKey',
     });
   }
 
@@ -88,7 +88,7 @@ class reactNativeApiRTC extends Component {
 
 	_onRemoteStreamAdded (type, detail) {
 	  console.log('_onRemoteStreamAdded - type = ', type);
-		this.setState({ info: 'Call established', remoteList: this.state.remoteList.set(this.state.callId, detail.stream.toURL()) });
+		this.setState({ info: 'Call established', remoteViewSrc: detail.stream.toURL() });
 	}
 
 	_onIncomingCall (type, detail) {
@@ -114,13 +114,11 @@ class reactNativeApiRTC extends Component {
   }
 
   _manageHangup() {
-    const remoteList = this.state.remoteList;
-    remoteList.delete(this.state.callId);
     this.setState({
 			status: 'ready',
 			info: 'Select the destination number and Press "Video Call"',
-			remoteList,
-			selfViewSrc: undefined
+			remoteViewSrc: null,
+			selfViewSrc: null
 		});
   }
 
@@ -148,12 +146,13 @@ class reactNativeApiRTC extends Component {
 		}
 
 		function renderSelfView (ctx) {
-			if (ctx.state.status === 'ready') return null;
+			if (ctx.state.status === 'ready' || !ctx.state.selfViewSrc) return null;
 			return <RTCView streamURL={ ctx.state.selfViewSrc } style={ styles.selfView }/>
 		}
 
-		function renderRemoteViews (ctx) {
-			return Array.from(ctx.state.remoteList.values()).map((value, index) => <RTCView key={ index } streamURL={ value } style={ styles.remoteView }/>);
+		function renderRemoteView (ctx) {
+			if (ctx.state.status === 'ready' || !ctx.state.remoteViewSrc) return null
+			return <RTCView streamURL={ ctx.state.remoteViewSrc } style={ styles.remoteView }/>;
 		}
 
 		function renderHangUp (ctx) {
@@ -174,7 +173,7 @@ class reactNativeApiRTC extends Component {
 				<Text style={ styles.welcome }>{ this.state.info }</Text>
 				{ renderPicker(this) }
 				{ renderSelfView(this) }
-				{ renderRemoteViews(this) }
+				{ renderRemoteView(this) }
 				{ renderHangUp(this) }
 			</View>
 		);
