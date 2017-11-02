@@ -1,18 +1,51 @@
 'use strict';
 import React, { Component } from 'react';
-import { AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native';
+import { AppRegistry, Picker, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { RTCView } from 'react-native-webrtc';
 
 require('./apiRTC-React-latest.min.debug.js');
 
 const styles = StyleSheet.create({
-	container: {
-		width: '100%',
-		height: '100%',
-		padding: 15,
-		backgroundColor: 'white'
+	callButton: {
+		width: 60,
+		height: 60,
+		borderRadius: 30,
+		backgroundColor: '#00cc00',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
-  picker: {},
+	callButtonContainer: {
+		width: 60,
+		height: 60,
+		borderRadius: 30
+	},
+	callIcon: {
+		position: 'relative',
+		left: 6,
+		width: 40,
+		height: 40,
+		padding: 0,
+		color: 'white',
+		backgroundColor: 'rgba(0, 0, 0, 0)',
+		fontSize: 40
+	},
+	callControls: {
+		flexShrink: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	container: {
+		flex: 1,
+		padding: 15,
+		backgroundColor: 'black',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+  picker: {
+		minWidth: 80,
+	},
+	pickerItem: { color: 'white' },
   remoteView: {
     width: 200,
     height: 150
@@ -22,7 +55,9 @@ const styles = StyleSheet.create({
     height: 150,
   },
   welcome: {
+		flexShrink: 1,
     fontSize: 20,
+		color: 'white',
     textAlign: 'center',
     margin: 10,
   }
@@ -73,7 +108,7 @@ class reactNativeApiRTC extends Component {
 	_onSessionReady () {
 		console.log('_onSessionReady :' + apiRTC.session.apiCCId);
 		this.webRTCClient = apiRTC.session.createWebRTCClient({});
-		this.setState({status: 'ready', initStatus : 'You can be reached at this number :' + apiRTC.session.apiCCId , info: 'Select the destination number and Press "Video Call"'});
+		this.setState({status: 'ready', initStatus : 'You can be reached at this number :' + apiRTC.session.apiCCId , info: 'Select the destination number'});
 	}
 
 	_onConnectedUsersListUpdate () {
@@ -128,35 +163,37 @@ class reactNativeApiRTC extends Component {
 
 	render () {
 
-		function renderPicker (ctx) {
+		function renderCallControls (ctx) {
 			if (ctx.state.status !== 'ready' || ctx.state.info === simulatorInfo) return null;
 			return (
-				<View>
+				<View style={ styles.callControls }>
 					<Picker
 						style={ styles.picker }
+						itemStyle={ styles.pickerItem }
 						mode='dropdown'
 						selectedValue={ ctx.state.selected }
 						onValueChange={ itemValue => ctx.setState({ selected: itemValue }) }>
 						{ ctx.state.connectedUsersList.length !== 0 ? ctx.state.connectedUsersList.map(item => <Picker.Item label={ item } value={ item } key={ item }/>) : [ <Picker.Item label={ 'No other connected user' } value={ 'No other connected user' } key={ 'noOtherConnectedUser' }/> ] }
 					</Picker>
-					<Button
-  					onPress={ ctx._call }
-  					title="Video Call"
-  					color="#00CC00"
-  					accessibilityLabel="Establish a video call"
-					/>
+					<TouchableOpacity
+						style={ styles.callButtonContainer }
+						onPress= { ctx._call }>
+						<View style={ styles.callButton }>
+							<Icon name='ios-call' style={ styles.callIcon }/>
+						</View>
+					</TouchableOpacity>
 				</View>
 			);
 		}
 
 		function renderSelfView (ctx) {
 			if (ctx.state.status === 'ready' || !ctx.state.selfViewSrc) return null;
-			return <RTCView streamURL={ ctx.state.selfViewSrc } style={ styles.selfView }/>
+			return <RTCView streamURL={ ctx.state.selfViewSrc } style={ styles.selfView } objectFit='cover'/>
 		}
 
 		function renderRemoteView (ctx) {
 			if (ctx.state.status === 'ready' || !ctx.state.remoteViewSrc) return null
-			return <RTCView streamURL={ ctx.state.remoteViewSrc } style={ styles.remoteView }/>;
+			return <RTCView streamURL={ ctx.state.remoteViewSrc } style={ styles.remoteView } objectFit='cover'/>;
 		}
 
 		function renderHangUp (ctx) {
@@ -175,9 +212,9 @@ class reactNativeApiRTC extends Component {
 			<View style={ styles.container }>
 				<Text style={ styles.welcome }>{ this.state.initStatus }</Text>
 				<Text style={ styles.welcome }>{ this.state.info }</Text>
-				{ renderPicker(this) }
-				{ renderSelfView(this) }
+				{ renderCallControls(this) }
 				{ renderRemoteView(this) }
+				{ renderSelfView(this) }
 				{ renderHangUp(this) }
 			</View>
 		);
