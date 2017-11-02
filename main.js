@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { AppRegistry, Picker, Text, TouchableOpacity, View, Button } from 'react-native';
+import { AppRegistry, Dimensions, Picker, Text, TouchableOpacity, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { RTCView } from 'react-native-webrtc';
 
@@ -85,12 +85,19 @@ const styles = {
 		left: 0,
 		right: 0
 	},
-  selfView: {
+  selfViewLandscape: {
+		position: 'absolute',
+		bottom: 0,
+		left: 0,
+    width: 120,
+    height: 90
+  },
+  selfViewPortrait: {
 		position: 'absolute',
 		bottom: 0,
 		left: 0,
     width: 90,
-    height: 120,
+    height: 120
   },
   statusMessage: {
 		flexShrink: 1,
@@ -112,7 +119,9 @@ const initialState = {
 	remoteViewSrc: null,
 	connectedUsersList: [],
 	selected: 'key1',
-	callId: 0
+	callId: 0,
+	windowWidth: null,
+	windowHeight: null
 };
 
 class reactNativeApiRTC extends Component {
@@ -129,6 +138,7 @@ class reactNativeApiRTC extends Component {
 		React.onIncomingCall = this._onIncomingCall.bind(this);
 		React.onHangup = this._onHangup.bind(this);
 
+		this._onLayout = this._onLayout.bind(this);
 		this._call = this._call.bind(this);
 		this._hangUp = this._hangUp.bind(this);
 		this._manageHangup = this._manageHangup.bind(this);
@@ -180,6 +190,11 @@ class reactNativeApiRTC extends Component {
 	  this._manageHangup();
 	};
 
+	_onLayout () {
+		const { width, height } = Dimensions.get('window');
+		if (width !== this.state.windowWidth || height !== this.state.windowHeight) this.setState({ windowWidth: width, windowHeight: height });
+	}
+
   _call () {
     this.setState({ status: 'connect', info: 'Connecting' });
     const callId = this.webRTCClient.call(this.state.selected);
@@ -220,12 +235,28 @@ class reactNativeApiRTC extends Component {
 
 		function renderSelfView (ctx) {
 			if (ctx.state.status === 'ready' || !ctx.state.selfViewSrc) return null;
-			return <RTCView streamURL={ ctx.state.selfViewSrc } style={ styles.selfView } objectFit='cover'/>
+			// portrait orientation style by default
+			let selfViewStyle = styles.selfViewPortrait;
+			// if landscape orientation detected, use landscape orientation style
+			if (ctx.state.windowWidth && ctx.state.windowHeight && ctx.state.windowWidth > ctx.state.windowHeight) selfViewStyle = styles.selfViewLandscape;
+			return (
+				<RTCView
+					streamURL={ ctx.state.selfViewSrc }
+					style={ selfViewStyle }
+					objectFit='cover'
+				/>
+			);
 		}
 
 		function renderRemoteView (ctx) {
 			if (ctx.state.status === 'ready' || !ctx.state.remoteViewSrc) return null
-			return <RTCView streamURL={ ctx.state.remoteViewSrc } style={ styles.remoteView } objectFit='cover'/>;
+			return (
+				<RTCView
+					streamURL={ ctx.state.remoteViewSrc }
+					style={ styles.remoteView }
+					objectFit='cover'
+				/>
+			);
 		}
 
 		function renderCallButtons (ctx) {
@@ -256,7 +287,9 @@ class reactNativeApiRTC extends Component {
 		}
 
 		return (
-			<View style={ styles.container }>
+			<View
+				style={ styles.container }
+				onLayout={ this._onLayout }>
 				<Text style={ styles.statusMessage }>{ this.state.statusMessage }</Text>
 				<Text style={ styles.infoMessage }>{ this.state.info }</Text>
 				{ renderPicker(this) }
