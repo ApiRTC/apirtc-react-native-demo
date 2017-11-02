@@ -91,7 +91,8 @@ class reactNativeApiRTC extends Component {
 
 	_onRemoteStreamAdded (type, detail) {
 	  console.log('_onRemoteStreamAdded - type = ', type);
-		this.setState({ info: 'Call established', remoteViewSrc: detail.stream.toURL() });
+		console.log('_onRemoteStreamAdded - detail = ', detail);
+		this.setState({ info: 'Call established', callId: detail.callId, remoteViewSrc: detail.stream.toURL() });
 	}
 
 	_onIncomingCall (type, detail) {
