@@ -1,12 +1,12 @@
 'use strict';
 import React, { Component } from 'react';
-import { AppRegistry, Picker, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { AppRegistry, Picker, Text, TouchableOpacity, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { RTCView } from 'react-native-webrtc';
 
 require('./apiRTC-React-latest.min.debug.js');
 
-const styles = StyleSheet.create({
+const styles = {
 	buttonContainer: {
 		position: 'absolute',
 		bottom: 10,
@@ -86,8 +86,11 @@ const styles = StyleSheet.create({
 		right: 0
 	},
   selfView: {
-    width: 200,
-    height: 150,
+		position: 'absolute',
+		bottom: 0,
+		left: 0,
+    width: 90,
+    height: 120,
   },
   statusMessage: {
 		flexShrink: 1,
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   }
-});
+};
 
 const selectNumber = 'Destination number:';
 const simulatorInfo = 'Looks like you are running on simulator. You can only be called from another device.';
