@@ -7,6 +7,13 @@ import { RTCView } from 'react-native-webrtc';
 require('./apiRTC-React-latest.min.debug.js');
 
 const styles = StyleSheet.create({
+	buttonContainer: {
+		position: 'absolute',
+		bottom: 10,
+		width: 60,
+		height: 60,
+		borderRadius: 30
+	},
 	callButton: {
 		width: 60,
 		height: 60,
@@ -14,11 +21,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#00cc00',
 		justifyContent: 'center',
 		alignItems: 'center'
-	},
-	callButtonContainer: {
-		width: 60,
-		height: 60,
-		borderRadius: 30
 	},
 	callIcon: {
 		position: 'relative',
@@ -42,19 +44,52 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	hangUpButton: {
+		width: 60,
+		height: 60,
+		borderRadius: 30,
+		backgroundColor: '#cc0000',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	hangUpIcon: {
+		position: 'relative',
+		top: 5,
+		left: -5,
+		width: 40,
+		height: 40,
+		padding: 0,
+		color: 'white',
+		backgroundColor: 'rgba(0, 0, 0, 0)',
+		fontSize: 40,
+		transform: [ { rotateZ: '135deg' } ]
+	},
+  infoMessage: {
+		flexShrink: 1,
+    fontSize: 20,
+		color: 'white',
+    textAlign: 'center',
+    marginTop: 30,
+		marginBottom: -10
+  },
   picker: {
 		minWidth: 80,
 	},
-	pickerItem: { color: 'white' },
+	pickerItem: {
+		color: 'white'
+	},
   remoteView: {
-    width: 200,
-    height: 150
-  },
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0
+	},
   selfView: {
     width: 200,
     height: 150,
   },
-  welcome: {
+  statusMessage: {
 		flexShrink: 1,
     fontSize: 20,
 		color: 'white',
@@ -63,12 +98,13 @@ const styles = StyleSheet.create({
   }
 });
 
+const selectNumber = 'Destination number:';
 const simulatorInfo = 'Looks like you are running on simulator. You can only be called from another device.';
 
 const initialState = {
-	initStatus : 'Registration ongoing',
+	statusMessage : 'Registration ongoing',
 	info: '',
-	status: 'ready',
+	status: 'initializing', // status lifecycle: initializing > ready > connect
 	selfViewSrc: null,
 	remoteViewSrc: null,
 	connectedUsersList: [],
@@ -91,7 +127,7 @@ class reactNativeApiRTC extends Component {
 		React.onHangup = this._onHangup.bind(this);
 
 		this._call = this._call.bind(this);
-		this._hangup = this._hangup.bind(this);
+		this._hangUp = this._hangUp.bind(this);
 		this._manageHangup = this._manageHangup.bind(this);
 	}
 
@@ -108,7 +144,7 @@ class reactNativeApiRTC extends Component {
 	_onSessionReady () {
 		console.log('_onSessionReady :' + apiRTC.session.apiCCId);
 		this.webRTCClient = apiRTC.session.createWebRTCClient({});
-		this.setState({status: 'ready', initStatus : 'You can be reached at this number :' + apiRTC.session.apiCCId , info: 'Select the destination number'});
+		this.setState({ status: 'ready', statusMessage : 'You can be reached at this number :' + apiRTC.session.apiCCId , info: selectNumber });
 	}
 
 	_onConnectedUsersListUpdate () {
@@ -147,7 +183,7 @@ class reactNativeApiRTC extends Component {
 		this.setState({ callId });
   }
 
-  _hangup() {
+  _hangUp() {
     this.webRTCClient.hangUp();
     this._manageHangup();
   }
@@ -155,7 +191,7 @@ class reactNativeApiRTC extends Component {
   _manageHangup() {
     this.setState({
 			status: 'ready',
-			info: this.state.info === simulatorInfo ? simulatorInfo : 'Select the destination number and Press "Video Call"',
+			info: this.state.info === simulatorInfo ? simulatorInfo : selectNumber,
 			remoteViewSrc: null,
 			selfViewSrc: null
 		});
@@ -163,7 +199,7 @@ class reactNativeApiRTC extends Component {
 
 	render () {
 
-		function renderCallControls (ctx) {
+		function renderPicker (ctx) {
 			if (ctx.state.status !== 'ready' || ctx.state.info === simulatorInfo) return null;
 			return (
 				<View style={ styles.callControls }>
@@ -175,13 +211,6 @@ class reactNativeApiRTC extends Component {
 						onValueChange={ itemValue => ctx.setState({ selected: itemValue }) }>
 						{ ctx.state.connectedUsersList.length !== 0 ? ctx.state.connectedUsersList.map(item => <Picker.Item label={ item } value={ item } key={ item }/>) : [ <Picker.Item label={ 'No other connected user' } value={ 'No other connected user' } key={ 'noOtherConnectedUser' }/> ] }
 					</Picker>
-					<TouchableOpacity
-						style={ styles.callButtonContainer }
-						onPress= { ctx._call }>
-						<View style={ styles.callButton }>
-							<Icon name='ios-call' style={ styles.callIcon }/>
-						</View>
-					</TouchableOpacity>
 				</View>
 			);
 		}
@@ -196,26 +225,41 @@ class reactNativeApiRTC extends Component {
 			return <RTCView streamURL={ ctx.state.remoteViewSrc } style={ styles.remoteView } objectFit='cover'/>;
 		}
 
-		function renderHangUp (ctx) {
-			if (ctx.state.status !== 'connect') return null;
+		function renderCallButtons (ctx) {
+			// not ready ('initializing') or simulator (simulatorInfo): render no button
+			if (ctx.state.status === 'initializing' || ctx.state.info === simulatorInfo) return null;
+			// no call in progress ('ready'): render call button
+			if (ctx.state.status === 'ready') {
+				return (
+						<TouchableOpacity
+						style={ styles.buttonContainer }
+						onPress= { ctx._call }>
+						<View style={ styles.callButton }>
+							<Icon name='ios-call' style={ styles.callIcon }/>
+						</View>
+					</TouchableOpacity>
+				);
+			}
+			// call in progress ('connect'): hangUp button
 			return (
-				<Button
-					onPress={ ctx._hangup }
-					title="Hangup"
-					color="#CC0000"
-					accessibilityLabel="Hangup the video call"
-				/>
+				<TouchableOpacity
+					style={ styles.buttonContainer }
+					onPress= { ctx._hangUp }>
+					<View style={ styles.hangUpButton }>
+						<Icon name='ios-call' style={ styles.hangUpIcon }/>
+					</View>
+				</TouchableOpacity>
 			);
 		}
 
 		return (
 			<View style={ styles.container }>
-				<Text style={ styles.welcome }>{ this.state.initStatus }</Text>
-				<Text style={ styles.welcome }>{ this.state.info }</Text>
-				{ renderCallControls(this) }
+				<Text style={ styles.statusMessage }>{ this.state.statusMessage }</Text>
+				<Text style={ styles.infoMessage }>{ this.state.info }</Text>
+				{ renderPicker(this) }
 				{ renderRemoteView(this) }
 				{ renderSelfView(this) }
-				{ renderHangUp(this) }
+				{ renderCallButtons(this) }
 			</View>
 		);
 	}
