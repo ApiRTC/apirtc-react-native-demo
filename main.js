@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
   }
 });
 
+const simulatorInfo = 'Looks like you are running on simulator. You can only be called from another device.';
+
 const initialState = {
 	initStatus : 'Registration ongoing',
 	info: '',
@@ -60,9 +62,7 @@ class reactNativeApiRTC extends Component {
 
   componentDidMount () {
     //apiRTC initialization
-    apiRTC.init({
-    	apiKey: 'myDemoApiKey',
-    });
+    apiRTC.init({ apiKey: 'myDemoApiKey' });
   }
 
   componentWillUnmount () {
@@ -83,7 +83,10 @@ class reactNativeApiRTC extends Component {
 
 	_onUserMediaSuccess (type, detail) {
 	  console.log('_onUserMediaSuccess - type = ', type);
-	  this.setState({ selfViewSrc: detail.stream.toURL() });
+		console.log('_onUserMediaSuccess - detail = ', detail);
+		// when running on simulator, device can only be called, it cannot call another device
+		if (detail && detail.stream) this.setState({ selfViewSrc: detail.stream.toURL() });
+		else this.setState({ info: simulatorInfo });
 	}
 
 	_onRemoteStreamAdded (type, detail) {
@@ -116,7 +119,7 @@ class reactNativeApiRTC extends Component {
   _manageHangup() {
     this.setState({
 			status: 'ready',
-			info: 'Select the destination number and Press "Video Call"',
+			info: this.state.info === simulatorInfo ? simulatorInfo : 'Select the destination number and Press "Video Call"',
 			remoteViewSrc: null,
 			selfViewSrc: null
 		});
@@ -125,7 +128,7 @@ class reactNativeApiRTC extends Component {
 	render () {
 
 		function renderPicker (ctx) {
-			if (ctx.state.status !== 'ready') return null;
+			if (ctx.state.status !== 'ready' || ctx.state.info === simulatorInfo) return null;
 			return (
 				<View>
 					<Picker
