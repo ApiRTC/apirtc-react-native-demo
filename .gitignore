@@ -4,33 +4,35 @@
 .DS_Store
 
 # Xcode
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
+# build/
+# *.pbxuser
+# !default.pbxuser
+# *.mode1v3
+# !default.mode1v3
+# *.mode2v3
+# !default.mode2v3
+# *.perspectivev3
+# !default.perspectivev3
+# xcuserdata
+# *.xccheckout
+# *.moved-aside
+# DerivedData
+# *.hmap
+# *.ipa
+# *.xcuserstate
+# project.xcworkspace
+
 ios/*
 !ios/Podfile
 
 # Android
-app/
-build/
-.idea
-.gradle
-local.properties
-*.iml
+android/*
+# app/
+# build/
+# .idea
+# .gradle
+# local.properties
+# *.iml
 
 # NodeJS
 node_modules/
