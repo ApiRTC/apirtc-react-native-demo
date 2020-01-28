@@ -17,7 +17,7 @@ This demo is also using react-native-webrtc: https://github.com/react-native-web
 - run `npx react-native run-ios` or run project from Xcode workspace
 
 ### Android:
-- run `react-native run-android`
+- run `react-native run-android` or run project from Android Studio
 	
 ## Call
 
