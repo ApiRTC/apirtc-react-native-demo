@@ -22,8 +22,8 @@
 # *.xcuserstate
 # project.xcworkspace
 
-ios/*
-!ios/Podfile
+ios/build
+ios/Pods
 
 # Android
 android/*
