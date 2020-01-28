@@ -1,23 +1,32 @@
 {
-  "name": "reactNativeApiRTC",
-  "version": "0.0.1",
+  "name": "ReactNativeApiRTC",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
-    "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache clean && npm install",
-    "forceClean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache clean --force && npm install"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.48.4",
-    "react-native-device-info": "0.11.0",
-    "react-native-webrtc": "1.58.2",
-    "socket.io-client": "1.7.4"
+    "react": "16.9.0",
+    "react-native": "0.61.5",
+    "react-native-device-info": "^5.4.1",
+    "react-native-event-listeners": "^1.0.7",
+    "react-native-permissions": "^2.0.9",
+    "react-native-webrtc": "^1.75.3",
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "babel-jest": "21.0.2",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "21.1.0",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "react-native"
