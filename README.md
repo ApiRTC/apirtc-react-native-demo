@@ -4,7 +4,7 @@ Demo for usage of apiRTC.js with React Native.
 
 ApiRTC is full WebRTC API SDK provided by Apizee: https://apirtc.com/
 
-This demo is also using react-native-webrtc: https://github.com/oney/react-native-webrtc
+This demo is also using react-native-webrtc: https://github.com/react-native-webrtc/react-native-webrtc
 
 ## Usage
 - Install React Native: https://facebook.github.io/react-native/docs/getting-started.
