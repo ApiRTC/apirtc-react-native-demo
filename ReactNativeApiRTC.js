@@ -99,6 +99,7 @@ export default class ReactNativeApiRTC extends React.Component {
         invitation.accept()
             .then((call) => {
                 this.setCallListeners(call);
+                this.currentCall = call;
             });
     }
 
