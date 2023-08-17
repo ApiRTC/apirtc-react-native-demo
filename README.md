@@ -49,13 +49,11 @@ npm install
 
 ## Launch react-native app on iOS sim :
 
-On ~/ios/ folder
+Open ios/ folder on XCode
 
-```
-sudo npx expo start
-```
+On XCode product menu (top left), select destination then a simulator or a real device.
 
-then press i
+Run app via XCode, Product -> Run
 
 ### Problem to open ios folder on xcode
 
