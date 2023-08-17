@@ -22,11 +22,6 @@ For example :
 ANDROID_HOME=/home/savinien/Android/Sdk npm run android
 ```
 
-### Build apiRTC lib for react-native : 
-```
-grunt build-react-native
-```
-
 ### Error : Number of file watchers reached
 
 - On file : ```/etc/sysctl.conf```, add 
