@@ -11,7 +11,10 @@ import {
     StatusBar,
     Platform,
 } from 'react-native';
+
 import ReactNativeApiRTC from './ReactNativeApiRTC';
+import PeerToPeer from './PeerToPeer';
+
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 
 const styles = StyleSheet.create({
@@ -64,31 +67,35 @@ export default class MenuReactApiRTC extends React.Component {
     }
 
     componentDidMount() {
-        
+
     }
 
     changeMode(mode, value) {
         if (mode == 'confMode') {
             setStatusBarBackgroundColor('black');
-            if(Platform.OS === 'ios') {
+            if (Platform.OS === 'ios') {
                 StatusBar.setBarStyle('dark-content');
             }
             this.setState({ confMode: value });
         }
         if (mode == 'peerMode') {
+            setStatusBarBackgroundColor('black');
+            if (Platform.OS === 'ios') {
+                StatusBar.setBarStyle('dark-content');
+            }
             this.setState({ peerMode: value });
         }
     }
 
     render() {
         function conference(ctx) {
-            if (ctx.state.confMode == false) return null;
-            return <ReactNativeApiRTC/>;
+            if (ctx.state.confMode !== true) return null;
+            return <ReactNativeApiRTC />;
         }
 
         function peertopeer(ctx) {
             if (ctx.state.peerMode !== true) return null;
-
+            return <PeerToPeer />
         }
 
         function menu(ctx) {

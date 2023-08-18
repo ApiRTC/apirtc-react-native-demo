@@ -8,7 +8,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@apirtc/apirtc": "^5.0.13",
+    "@apirtc/react-native-apirtc": "^5.0.16-rc-2-react-native",
     "@config-plugins/react-native-webrtc": "^6.0.0",
     "@expo/webpack-config": "^18.0.1",
     "@notifee/react-native": "^7.8.0",

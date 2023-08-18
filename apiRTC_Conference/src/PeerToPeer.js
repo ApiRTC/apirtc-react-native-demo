@@ -80,7 +80,7 @@ const initialState = {
 
 const defaultText = 'Select room';
 
-export default class ReactNativeApiRTC extends React.Component {
+export default class PeerToPeer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -211,8 +211,8 @@ export default class ReactNativeApiRTC extends React.Component {
                 this.call();
             } else {
                 this.conversation = this.connectedSession.getOrCreateConversation(this.state.roomName, {
-                    meshModeEnabled: false,
-                    meshOnlyEnabled: false
+                    meshModeEnabled: true,
+                    meshOnlyEnabled: true
                 });
                 this.setListeners();
                 this.joinConversation();
