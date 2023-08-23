@@ -59,8 +59,6 @@ const styles = StyleSheet.create({
         width: windowWidth / 2 - 10,
         height: windowHeight / 2 - 10,
         backgroundColor: '#d1d1d1',
-        zIndex: -1,
-        elevation: -1
     },
     input: {
         width: '80%',
@@ -195,8 +193,8 @@ const styles = StyleSheet.create({
     },
     touchDialog: {
         //position: relative;
-        width: '100%', 
-        height: 30, 
+        width: '100%',
+        height: 30,
         marginBottom: 4,
         marginTop: 4
     },
@@ -214,7 +212,24 @@ const styles = StyleSheet.create({
         height: '100%',
         width: 20
     },
-
+    menuRemoteContainer: {
+        width: '50%',
+        borderWidth: 1,
+        borderColor: '#313335',
+        borderRadius: 15,
+        backgroundColor: '#1D1F20',
+    },
+    behindMenuRemoteContainer: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        top: 0,
+        left: 0,
+        zIndex: 21,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
 
     /*PANSELFVIEW*/
     selfView: (x, y) => {

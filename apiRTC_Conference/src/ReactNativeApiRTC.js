@@ -48,6 +48,7 @@ import Hangup from "../assets/svg/Hangup.js"
 import Menu from "../assets/svg/Menu.js"
 import Switch_camera from '../assets/svg/Switch_camera.js';
 import Camera_record from '../assets/svg/Camera_record.js'
+import Torche from '../assets/svg/LightBulb.js';
 
 const initialState = {
     initStatus: 'Registration ongoing',
@@ -70,6 +71,9 @@ const initialState = {
     coordX: 0,
     coordY: 0,
     isRecording: false,
+
+    remoteMenuOpen: false,
+    remoteIdSelected: null,
 
     switch_screenShare: false,
     newMessage: null,
@@ -100,9 +104,9 @@ export default class ReactNativeApiRTC extends React.Component {
         this.foreground = new ForegroundService();
     }
 
-    componentDidMount() {    
-        
-        apiRTC.setLogLevel(0);
+    componentDidMount() {
+
+        apiRTC.setLogLevel(10);
 
         this.setState({ remoteListSrc: new Map(), remoteList: new Map() })
 
@@ -128,6 +132,14 @@ export default class ReactNativeApiRTC extends React.Component {
                 this.setState({ initStatus: 'Conversation join' });
                 apiRTC.Stream.createStreamFromUserMedia().then((localStream) => {
                     this.localStream = localStream;
+
+                    localStream
+                        .on("constraintsChanged", function (constraints) {
+                            console.warn("local Stream : constraintsChanged event :", constraints);
+                            updateSettings(stream);
+                        });
+
+
                     console.info("Update local stream");
                     this.conversation.publish(localStream).then((pubStream) => {
                         //console.error('published');
@@ -158,9 +170,26 @@ export default class ReactNativeApiRTC extends React.Component {
         this.conversation.on("streamAdded", (remoteStream) => {
             //Good subscription -> the we add
             let remoteStream_rtcView = remoteStream.getData().toURL();
+
+            remoteStream
+                .on("constraintsChanged", function (constraints) {
+                    console.warn("remote Stream : constraintsChanged event :", constraints);
+                    updateSettings(stream);
+                })
+
             //set remote stream map
             this.setState({ remoteListSrc: this.state.remoteListSrc.set(remoteStream.getId(), remoteStream_rtcView) });
             this.setState({ remoteList: this.state.remoteList.set(remoteStream.getId(), remoteStream) });
+        });
+
+        this.conversation.on("streamRemoved", (stream) => {
+            let updateRemoteListSrc = new Map(this.state.remoteListSrc);
+            updateRemoteListSrc.delete(stream.getId());
+            this.setState({ remoteListSrc: updateRemoteListSrc });
+
+            let updateRemoteList = new Map(this.state.remoteList);
+            updateRemoteList.delete(stream.getId());
+            this.setState({ remoteList: updateRemoteList });
         });
 
         this.conversation.on("streamListChanged", (streamInfo) => {
@@ -172,6 +201,8 @@ export default class ReactNativeApiRTC extends React.Component {
                         console.error(err);
                         console.error("REACT - Failed to subscribe to stream");
                     });
+
+                console.warn(streamInfo instanceof apiRTC.Stream);
                 this.conversation.subscribeToStream(streamInfo.streamId);
             }
         });
@@ -201,6 +232,28 @@ export default class ReactNativeApiRTC extends React.Component {
                 }
             });
         });
+    }
+
+    updateSettings(stream) {
+
+        console.log("updateSettings ")
+
+        stream.getSettings()
+            .then(function (result) {
+
+                settings = result;
+
+                Object.keys(settings.audio).forEach(function (set) {
+                    console.warn(set);
+                });
+
+                Object.keys(settings.video).forEach(function (set) {
+                    console.warn(set);
+                })
+
+            }).catch(function (error) {
+                console.log("Error : ", error);
+            })
     }
 
     call = () => {
@@ -369,6 +422,43 @@ export default class ReactNativeApiRTC extends React.Component {
         }
     }
 
+    menuOptionRemote(index = null, value = null, evt = null) {
+        if (this.state.remoteMenuOpen) { //Menu is open
+            console.info("Close remote menu");
+            /*let key = this.getByValue(this.state.remoteListSrc, value);
+            let streamObject = this.state.remoteList.get(key);*/
+            this.setState({ remoteIdSelected: null });
+            this.setState({ remoteMenuOpen: false });
+        } else {
+            console.info("Open remote menu");
+            console.info("Index : " + index + " / Value : " + value);
+            let key = this.getByValue(this.state.remoteListSrc, value);
+            let streamObject = this.state.remoteList.get(key);
+
+            this.setState({ remoteIdSelected: key });
+            this.setState({ remoteMenuOpen: true });
+        }
+    }
+
+    remoteTorche() {
+        console.info("Set torche for stream : " + this.state.remoteIdSelected);
+        let constraintToApply = {
+            audio: {},
+            video: {
+                advanced: [
+                    {
+                        torch: true,
+                    }
+                ]
+            }
+        }
+        let stream_torch = this.state.remoteList.get(this.state.remoteIdSelected);
+        stream_torch.applyConstraints(constraintToApply).then(() => {
+            console.info("Updated");
+        }).catch(function (error) {
+            console.log("Error : ", error);
+        })
+    }
 
     render() {
         function setRoom(ctx, value) {
@@ -464,7 +554,11 @@ export default class ReactNativeApiRTC extends React.Component {
 
         function renderRemoteView(ctx) {
             if (ctx.state.remoteListSrc.size == 0) return null;
-            return Array.from(ctx.state.remoteListSrc.values()).map((value, index) => <RTCView key={index} streamURL={value} zOrder={100} style={styles.remoteView} />);
+            return Array.from(ctx.state.remoteListSrc.values()).map((value, index) =>
+                <TouchableOpacity key={index} style={styles.remoteView} onLongPress={(evt) => ctx.menuOptionRemote(index, value, evt)}>
+                    <RTCView streamURL={value} style={{ width: '100%', height: '100%' }} />
+                </TouchableOpacity>
+            );
         }
 
         function renderButtons(ctx) {
@@ -611,8 +705,34 @@ export default class ReactNativeApiRTC extends React.Component {
 
         }
 
+        function menuOptionRemote(ctx) {
+            if (!ctx.state.remoteMenuOpen) return null;
+            return (
+                <TouchableOpacity onPress={() => ctx.menuOptionRemote()} style={styles.behindMenuRemoteContainer}>
+                    <View style={[styles.menuRemoteContainer]}>
+                        {/*If you need to add a element to the menu*/}
+                        {/*Just copy paste TouchableOpacity element*/}
+                        <TouchableOpacity
+                            onPress={() => ctx.remoteTorche()}
+                            style={styles.touchDialog}>
+                            <View style={styles.contentDialogCountainer}>
+                                <View style={styles.svgDialog}>
+                                    <Torche />
+                                </View>
+                                <View style={styles.testDialog}>
+                                    <Text style={{ color: '#BBCCDD' }}>Allumer torche</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                        {/*End here*/}
+                    </View>
+                </TouchableOpacity>
+            );
+        }
+
         return (
             <View style={styles.container}>
+                {menuOptionRemote(this)}
                 {renderPicker(this)}
                 {renderRemoteViews(this)}
                 {renderButtons(this)}
@@ -621,7 +741,15 @@ export default class ReactNativeApiRTC extends React.Component {
                 {chat(this)}
                 {screenCaptureinfo(this)}
                 {screenCaptureinfo2(this)}
+
             </View>
         );
+    }
+
+    getByValue(map, searchValue) {
+        for (let [key, value] of map.entries()) {
+            if (value === searchValue)
+                return key;
+        }
     }
 }
