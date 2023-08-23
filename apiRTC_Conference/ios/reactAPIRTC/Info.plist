@@ -56,5 +56,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>RTCScreenSharingExtension</key>
+	<string>org.name.reactAPIRTC.Broadcast-Extention</string>
+	<key>RTCAppGroupIdentifier</key>
+	<string>group.org.react.native.broadcast</string>
 </dict>
 </plist>
