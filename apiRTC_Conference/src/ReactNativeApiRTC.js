@@ -133,11 +133,11 @@ export default class ReactNativeApiRTC extends React.Component {
                 apiRTC.Stream.createStreamFromUserMedia().then((localStream) => {
                     this.localStream = localStream;
 
-                    localStream
+                    /*localStream
                         .on("constraintsChanged", function (constraints) {
                             console.warn("local Stream : constraintsChanged event :", constraints);
                             updateSettings(stream);
-                        });
+                        });*/
 
 
                     console.info("Update local stream");
@@ -171,11 +171,11 @@ export default class ReactNativeApiRTC extends React.Component {
             //Good subscription -> the we add
             let remoteStream_rtcView = remoteStream.getData().toURL();
 
-            remoteStream
+            /*remoteStream
                 .on("constraintsChanged", function (constraints) {
                     console.warn("remote Stream : constraintsChanged event :", constraints);
                     updateSettings(stream);
-                })
+                })*/
 
             //set remote stream map
             this.setState({ remoteListSrc: this.state.remoteListSrc.set(remoteStream.getId(), remoteStream_rtcView) });
@@ -234,7 +234,7 @@ export default class ReactNativeApiRTC extends React.Component {
         });
     }
 
-    updateSettings(stream) {
+    /*updateSettings(stream) {
 
         console.log("updateSettings ")
 
@@ -254,7 +254,7 @@ export default class ReactNativeApiRTC extends React.Component {
             }).catch(function (error) {
                 console.log("Error : ", error);
             })
-    }
+    }*/
 
     call = () => {
         //on video call
@@ -606,7 +606,7 @@ export default class ReactNativeApiRTC extends React.Component {
         };
 
         function dipslayScreenShare(ctx) {
-            if (Platform.OS === 'ios') return null;
+            //if (Platform.OS === 'ios') return null;
             return (
                 <TouchableOpacity
                     style={styles.renderButtonComponent}
