@@ -758,6 +758,7 @@ export default class ReactNativeApiRTC extends React.Component {
         }
 
         function screenCapturePickerView(ctx) {
+            if(Platform.OS !== 'ios') return null;
             return <ScreenCapturePickerView ref={ctx.screenCaptureView} />
         }
 
