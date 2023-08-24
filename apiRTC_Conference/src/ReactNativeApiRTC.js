@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, createRef } from 'react';
 import {
     StyleSheet,
     Text,
@@ -12,7 +12,8 @@ import {
     TouchableOpacity,
     PanResponder,
     Platform,
-
+    findNodeHandle,
+    NativeModules,
 } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import {
@@ -22,7 +23,8 @@ import {
     RTCView,
     MediaStream,
     MediaStreamTrack,
-    mediaDevices
+    mediaDevices,
+    ScreenCapturePickerView
 } from 'react-native-webrtc';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 
@@ -122,6 +124,10 @@ export default class ReactNativeApiRTC extends React.Component {
             .catch((err) => {
                 console.error(err);
             });
+
+        if (Platform.OS === 'ios') {
+            this.screenCaptureView = createRef(null);
+        }
     }
 
     joinConversation() {
@@ -201,8 +207,6 @@ export default class ReactNativeApiRTC extends React.Component {
                         console.error(err);
                         console.error("REACT - Failed to subscribe to stream");
                     });
-
-                console.warn(streamInfo instanceof apiRTC.Stream);
                 this.conversation.subscribeToStream(streamInfo.streamId);
             }
         });
@@ -301,23 +305,46 @@ export default class ReactNativeApiRTC extends React.Component {
             this.conversation.unpublish(this.localScreen);
             this.localScreen = null;
         } else {
-            this.foreground.startService('Screen sharing', 'is capturing your screen');
-            const displayMediaStreamConstraints = {
-                video: true,
-                audio: false,
-            }
-            apiRTC.Stream.createScreensharingStream(displayMediaStreamConstraints).then((localScreenShare) => {
-                this.localScreen = localScreenShare;
-                this.setState({ selfScreenSrc: this.localScreen.getData().toURL() });
-                this.conversation.publish(localScreenShare).then((publishedScreenShare) => {
-                    this.publishedLocalScreen = publishedScreenShare;
-                    this.setState({ switch_screenShare: true });
+            if (Platform.OS === 'ios') {
+                const reactTag = findNodeHandle(this.screenCaptureView.current);
+                NativeModules.ScreenCapturePickerViewManager.show(reactTag);
+                /*console.warn('ios screen share');
+                console.warn(this.screenCaptureView.current);*/
+                const displayMediaStreamConstraints = {
+                    video: true,
+                    audio: false,
+                }
+                apiRTC.Stream.createScreensharingStream(displayMediaStreamConstraints).then((localScreenShare) => {
+                    this.localScreen = localScreenShare;
+                    this.setState({ selfScreenSrc: this.localScreen.getData().toURL() });
+                    this.conversation.publish(localScreenShare).then((publishedScreenShare) => {
+                        this.publishedLocalScreen = publishedScreenShare;
+                        this.setState({ switch_screenShare: true });
+                    }).catch((err) => {
+                        console.error(err);
+                    });
                 }).catch((err) => {
                     console.error(err);
                 });
-            }).catch((err) => {
-                console.error(err);
-            });
+            } else {
+                this.foreground.startService('Screen sharing', 'is capturing your screen');
+                const displayMediaStreamConstraints = {
+                    video: true,
+                    audio: false,
+                }
+                apiRTC.Stream.createScreensharingStream(displayMediaStreamConstraints).then((localScreenShare) => {
+                    this.localScreen = localScreenShare;
+                    this.setState({ selfScreenSrc: this.localScreen.getData().toURL() });
+                    this.conversation.publish(localScreenShare).then((publishedScreenShare) => {
+                        this.publishedLocalScreen = publishedScreenShare;
+                        this.setState({ switch_screenShare: true });
+                    }).catch((err) => {
+                        console.error(err);
+                    });
+                }).catch((err) => {
+                    console.error(err);
+                });
+            }
         }
     }
 
@@ -730,8 +757,13 @@ export default class ReactNativeApiRTC extends React.Component {
             );
         }
 
+        function screenCapturePickerView(ctx) {
+            return <ScreenCapturePickerView ref={ctx.screenCaptureView} />
+        }
+
         return (
             <View style={styles.container}>
+                {screenCapturePickerView(this)}
                 {menuOptionRemote(this)}
                 {renderPicker(this)}
                 {renderRemoteViews(this)}
@@ -741,7 +773,6 @@ export default class ReactNativeApiRTC extends React.Component {
                 {chat(this)}
                 {screenCaptureinfo(this)}
                 {screenCaptureinfo2(this)}
-
             </View>
         );
     }

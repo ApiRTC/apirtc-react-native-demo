@@ -57,8 +57,8 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>RTCScreenSharingExtension</key>
-	<string>org.name.reactAPIRTC.Broadcast-Extention</string>
+	<string>org.name.reactAPIRTC.broadcast</string>
 	<key>RTCAppGroupIdentifier</key>
-	<string>group.org.react.native.broadcast</string>
+	<string>group.com.apirtc.reactAPIRTC.broadcast</string>
 </dict>
 </plist>

@@ -14,22 +14,22 @@
 		96905EF65AED1B983A6B3ABC /* libPods-reactAPIRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-reactAPIRTC.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		FA256CA32A96323C004CCFEE /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA256C912A963139004CCFEE /* ReplayKit.framework */; };
-		FA256CA62A96323C004CCFEE /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA256CA52A96323C004CCFEE /* SampleHandler.swift */; };
-		FA256CAA2A96323C004CCFEE /* Broadcast Extention.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FA256CA22A96323C004CCFEE /* Broadcast Extention.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FA256CB12A963454004CCFEE /* SampleUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA256CAE2A963454004CCFEE /* SampleUploader.swift */; };
-		FA256CB22A963454004CCFEE /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA256CAF2A963454004CCFEE /* SocketConnection.swift */; };
-		FA256CB32A963454004CCFEE /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA256CB02A963454004CCFEE /* DarwinNotificationCenter.swift */; };
-		FA256CB52A96348B004CCFEE /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA256CB42A96348B004CCFEE /* Atomic.swift */; };
+		FAC41D5F2A9754A600C6B4BC /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA256C912A963139004CCFEE /* ReplayKit.framework */; };
+		FAC41D622A9754A600C6B4BC /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC41D612A9754A600C6B4BC /* SampleHandler.swift */; };
+		FAC41D662A9754A600C6B4BC /* broadcast.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAC41D5E2A9754A600C6B4BC /* broadcast.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FAC41D6D2A97554300C6B4BC /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC41D6C2A97554300C6B4BC /* SocketConnection.swift */; };
+		FAC41D6F2A97558E00C6B4BC /* SampleUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC41D6E2A97558E00C6B4BC /* SampleUploader.swift */; };
+		FAC41D712A9755FE00C6B4BC /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC41D702A9755FE00C6B4BC /* DarwinNotificationCenter.swift */; };
+		FAC41D732A97562D00C6B4BC /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC41D722A97562D00C6B4BC /* Atomic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FA256CA82A96323C004CCFEE /* PBXContainerItemProxy */ = {
+		FAC41D642A9754A600C6B4BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = FA256CA12A96323C004CCFEE;
-			remoteInfo = "Broadcast Extention";
+			remoteGlobalIDString = FAC41D5D2A9754A600C6B4BC;
+			remoteInfo = broadcast;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -40,7 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FA256CAA2A96323C004CCFEE /* Broadcast Extention.appex in Embed Foundation Extensions */,
+				FAC41D662A9754A600C6B4BC /* broadcast.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,14 +63,14 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FA256C8B2A8CC71B004CCFEE /* reactAPIRTC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = reactAPIRTC.entitlements; path = reactAPIRTC/reactAPIRTC.entitlements; sourceTree = "<group>"; };
 		FA256C912A963139004CCFEE /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
-		FA256CA22A96323C004CCFEE /* Broadcast Extention.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Broadcast Extention.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA256CA52A96323C004CCFEE /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
-		FA256CA72A96323C004CCFEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA256CAE2A963454004CCFEE /* SampleUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleUploader.swift; sourceTree = "<group>"; };
-		FA256CAF2A963454004CCFEE /* SocketConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
-		FA256CB02A963454004CCFEE /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
-		FA256CB42A96348B004CCFEE /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
-		FA256CB62A9651DE004CCFEE /* Broadcast Extention.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Broadcast Extention.entitlements"; sourceTree = "<group>"; };
+		FAC41D5E2A9754A600C6B4BC /* broadcast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = broadcast.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC41D612A9754A600C6B4BC /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
+		FAC41D632A9754A600C6B4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC41D6C2A97554300C6B4BC /* SocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
+		FAC41D6E2A97558E00C6B4BC /* SampleUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUploader.swift; sourceTree = "<group>"; };
+		FAC41D702A9755FE00C6B4BC /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
+		FAC41D722A97562D00C6B4BC /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		FAC41D742A9757AE00C6B4BC /* broadcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = broadcast.entitlements; sourceTree = "<group>"; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-reactAPIRTC/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,11 +83,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA256C9F2A96323C004CCFEE /* Frameworks */ = {
+		FAC41D5B2A9754A600C6B4BC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA256CA32A96323C004CCFEE /* ReplayKit.framework in Frameworks */,
+				FAC41D5F2A9754A600C6B4BC /* ReplayKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +132,7 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* reactAPIRTC */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				FA256CA42A96323C004CCFEE /* Broadcast Extention */,
+				FAC41D602A9754A600C6B4BC /* broadcast */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* reactAPIRTC.app */,
-				FA256CA22A96323C004CCFEE /* Broadcast Extention.appex */,
+				FAC41D5E2A9754A600C6B4BC /* broadcast.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,18 +186,18 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		FA256CA42A96323C004CCFEE /* Broadcast Extention */ = {
+		FAC41D602A9754A600C6B4BC /* broadcast */ = {
 			isa = PBXGroup;
 			children = (
-				FA256CB62A9651DE004CCFEE /* Broadcast Extention.entitlements */,
-				FA256CB42A96348B004CCFEE /* Atomic.swift */,
-				FA256CB02A963454004CCFEE /* DarwinNotificationCenter.swift */,
-				FA256CAE2A963454004CCFEE /* SampleUploader.swift */,
-				FA256CAF2A963454004CCFEE /* SocketConnection.swift */,
-				FA256CA52A96323C004CCFEE /* SampleHandler.swift */,
-				FA256CA72A96323C004CCFEE /* Info.plist */,
+				FAC41D742A9757AE00C6B4BC /* broadcast.entitlements */,
+				FAC41D612A9754A600C6B4BC /* SampleHandler.swift */,
+				FAC41D632A9754A600C6B4BC /* Info.plist */,
+				FAC41D6C2A97554300C6B4BC /* SocketConnection.swift */,
+				FAC41D6E2A97558E00C6B4BC /* SampleUploader.swift */,
+				FAC41D702A9755FE00C6B4BC /* DarwinNotificationCenter.swift */,
+				FAC41D722A97562D00C6B4BC /* Atomic.swift */,
 			);
-			path = "Broadcast Extention";
+			path = broadcast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,28 +220,28 @@
 			buildRules = (
 			);
 			dependencies = (
-				FA256CA92A96323C004CCFEE /* PBXTargetDependency */,
+				FAC41D652A9754A600C6B4BC /* PBXTargetDependency */,
 			);
 			name = reactAPIRTC;
 			productName = reactAPIRTC;
 			productReference = 13B07F961A680F5B00A75B9A /* reactAPIRTC.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FA256CA12A96323C004CCFEE /* Broadcast Extention */ = {
+		FAC41D5D2A9754A600C6B4BC /* broadcast */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA256CAD2A96323C004CCFEE /* Build configuration list for PBXNativeTarget "Broadcast Extention" */;
+			buildConfigurationList = FAC41D672A9754A600C6B4BC /* Build configuration list for PBXNativeTarget "broadcast" */;
 			buildPhases = (
-				FA256C9E2A96323C004CCFEE /* Sources */,
-				FA256C9F2A96323C004CCFEE /* Frameworks */,
-				FA256CA02A96323C004CCFEE /* Resources */,
+				FAC41D5A2A9754A600C6B4BC /* Sources */,
+				FAC41D5B2A9754A600C6B4BC /* Frameworks */,
+				FAC41D5C2A9754A600C6B4BC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Broadcast Extention";
-			productName = "Broadcast Extention";
-			productReference = FA256CA22A96323C004CCFEE /* Broadcast Extention.appex */;
+			name = broadcast;
+			productName = broadcast;
+			productReference = FAC41D5E2A9754A600C6B4BC /* broadcast.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -257,7 +257,7 @@
 						DevelopmentTeam = HNV8D8L2DD;
 						LastSwiftMigration = 1250;
 					};
-					FA256CA12A96323C004CCFEE = {
+					FAC41D5D2A9754A600C6B4BC = {
 						CreatedOnToolsVersion = 14.3.1;
 						DevelopmentTeam = HNV8D8L2DD;
 						ProvisioningStyle = Automatic;
@@ -278,7 +278,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* reactAPIRTC */,
-				FA256CA12A96323C004CCFEE /* Broadcast Extention */,
+				FAC41D5D2A9754A600C6B4BC /* broadcast */,
 			);
 		};
 /* End PBXProject section */
@@ -294,7 +294,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA256CA02A96323C004CCFEE /* Resources */ = {
+		FAC41D5C2A9754A600C6B4BC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -412,25 +412,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA256C9E2A96323C004CCFEE /* Sources */ = {
+		FAC41D5A2A9754A600C6B4BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA256CA62A96323C004CCFEE /* SampleHandler.swift in Sources */,
-				FA256CB22A963454004CCFEE /* SocketConnection.swift in Sources */,
-				FA256CB32A963454004CCFEE /* DarwinNotificationCenter.swift in Sources */,
-				FA256CB12A963454004CCFEE /* SampleUploader.swift in Sources */,
-				FA256CB52A96348B004CCFEE /* Atomic.swift in Sources */,
+				FAC41D6F2A97558E00C6B4BC /* SampleUploader.swift in Sources */,
+				FAC41D6D2A97554300C6B4BC /* SocketConnection.swift in Sources */,
+				FAC41D712A9755FE00C6B4BC /* DarwinNotificationCenter.swift in Sources */,
+				FAC41D622A9754A600C6B4BC /* SampleHandler.swift in Sources */,
+				FAC41D732A97562D00C6B4BC /* Atomic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FA256CA92A96323C004CCFEE /* PBXTargetDependency */ = {
+		FAC41D652A9754A600C6B4BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FA256CA12A96323C004CCFEE /* Broadcast Extention */;
-			targetProxy = FA256CA82A96323C004CCFEE /* PBXContainerItemProxy */;
+			target = FAC41D5D2A9754A600C6B4BC /* broadcast */;
+			targetProxy = FAC41D642A9754A600C6B4BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -608,7 +608,7 @@
 			};
 			name = Release;
 		};
-		FA256CAB2A96323C004CCFEE /* Debug */ = {
+		FAC41D682A9754A600C6B4BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -618,22 +618,22 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Broadcast Extention/Broadcast Extention.entitlements";
+				CODE_SIGN_ENTITLEMENTS = broadcast/broadcast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = HNV8D8L2DD;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Broadcast Extention/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Broadcast Extention";
+				INFOPLIST_FILE = broadcast/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = broadcast;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.name.reactAPIRTC.Broadcast-Extention";
+				PRODUCT_BUNDLE_IDENTIFIER = org.name.reactAPIRTC.broadcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -644,7 +644,7 @@
 			};
 			name = Debug;
 		};
-		FA256CAC2A96323C004CCFEE /* Release */ = {
+		FAC41D692A9754A600C6B4BC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -654,7 +654,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Broadcast Extention/Broadcast Extention.entitlements";
+				CODE_SIGN_ENTITLEMENTS = broadcast/broadcast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -662,14 +662,14 @@
 				DEVELOPMENT_TEAM = HNV8D8L2DD;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Broadcast Extention/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Broadcast Extention";
+				INFOPLIST_FILE = broadcast/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = broadcast;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.name.reactAPIRTC.Broadcast-Extention";
+				PRODUCT_BUNDLE_IDENTIFIER = org.name.reactAPIRTC.broadcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -700,11 +700,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA256CAD2A96323C004CCFEE /* Build configuration list for PBXNativeTarget "Broadcast Extention" */ = {
+		FAC41D672A9754A600C6B4BC /* Build configuration list for PBXNativeTarget "broadcast" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FA256CAB2A96323C004CCFEE /* Debug */,
-				FA256CAC2A96323C004CCFEE /* Release */,
+				FAC41D682A9754A600C6B4BC /* Debug */,
+				FAC41D692A9754A600C6B4BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
