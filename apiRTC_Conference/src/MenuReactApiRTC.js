@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 import ReactNativeApiRTC from './ReactNativeApiRTC';
-import PeerToPeer from './PeerToPeer';
 
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 
@@ -95,7 +94,14 @@ export default class MenuReactApiRTC extends React.Component {
 
         function peertopeer(ctx) {
             if (ctx.state.peerMode !== true) return null;
-            return <PeerToPeer />
+            return (
+                <View style={{ display: 'flex', alignItems: 'center', marginTop: '50%' }}>
+                    <Text>Peer to peer is not avaible, try conférence mode</Text>
+                    <Pressable style={styles.button} onPress={() => { ctx.setState({ peerMode: false }) }}>
+                        <Text style={styles.text}>Back</Text>
+                    </Pressable>
+                </View>
+            );
         }
 
         function menu(ctx) {

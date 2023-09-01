@@ -501,12 +501,9 @@ export default class ReactNativeApiRTC extends React.Component {
                         style={styles.input}
                         placeholder={defaultText}
                     />
-                    <Button
-                        onPress={ctx.call}
-                        title="Video Call"
-                        color="#00CC00"
-                        accessibilityLabel="Establish a video call"
-                    />
+                    <Pressable style={styles.button} onPress={() => { ctx.call() }}>
+                        <Text style={styles.text}>Video call</Text>
+                    </Pressable>
                 </View>
             );
         }
@@ -758,7 +755,7 @@ export default class ReactNativeApiRTC extends React.Component {
         }
 
         function screenCapturePickerView(ctx) {
-            if(Platform.OS !== 'ios') return null;
+            if (Platform.OS !== 'ios') return null;
             return <ScreenCapturePickerView ref={ctx.screenCaptureView} />
         }
 

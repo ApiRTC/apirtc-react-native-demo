@@ -230,6 +230,22 @@ const styles = StyleSheet.create({
         zIndex: 21,
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        marginVertical: 10,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        backgroundColor: 'black',
+    },
+    text: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
+    },
 
     /*PANSELFVIEW*/
     selfView: (x, y) => {
