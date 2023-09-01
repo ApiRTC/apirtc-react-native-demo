@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
 
 const initialState = {
     confMode: false,
-    peerMode: false
+    peerMode: false,
+    buttonReady: false
 };
 
 
@@ -63,9 +64,26 @@ export default class MenuReactApiRTC extends React.Component {
     constructor(props) {
         super(props);
         this.state = initialState;
+        this.bindChangeConfMode = null;
+        this.connectedSession = null;
     }
 
     componentDidMount() {
+        apiRTC.setLogLevel(10);
+
+        this.ua = new apiRTC.UserAgent({
+            //cloudUrl: 'https://cloud.apizee.com',
+            uri: 'apzkey:myDemoApiKey'
+        });
+
+        this.ua.register()
+            .then((session) => {
+                this.connectedSession = session;
+                this.setState({buttonReady: true})
+            })
+            .catch((err) => {
+                console.error(err);
+            });
 
     }
 
@@ -86,10 +104,18 @@ export default class MenuReactApiRTC extends React.Component {
         }
     }
 
+    changeConfMode() {
+        if(this.state.confMode) {
+            this.setState({confMode: false});
+        } else {
+            this.setState({confMode: true});
+        }
+    }
+
     render() {
         function conference(ctx) {
             if (ctx.state.confMode !== true) return null;
-            return <ReactNativeApiRTC />;
+            return <ReactNativeApiRTC session={ctx.connectedSession} func={ctx.changeConfMode.bind(ctx)} />;
         }
 
         function peertopeer(ctx) {
@@ -105,7 +131,7 @@ export default class MenuReactApiRTC extends React.Component {
         }
 
         function menu(ctx) {
-            if (ctx.state.peerMode == true || ctx.state.confMode == true) return null;
+            if (ctx.state.peerMode == true || ctx.state.confMode == true || ctx.state.buttonReady == false) return null;
             return (
                 <View style={{ marginTop: 250, paddingHorizontal: 100 }}>
                     <Pressable style={styles.button} onPress={() => ctx.changeMode('confMode', true)}>

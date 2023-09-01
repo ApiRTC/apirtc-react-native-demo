@@ -93,6 +93,7 @@ export default class ReactNativeApiRTC extends React.Component {
         console.log(DeviceInfo.getBundleId());
         this.state = initialState;
 
+        this.menuContext = props.context;
         this.ua = null;
         this.connectedSession = null;
         this.currentCall = null;
@@ -103,6 +104,8 @@ export default class ReactNativeApiRTC extends React.Component {
         this.publishedLocalScreen = null;
         this.chatChild = null;
 
+        this.connectedSession = this.props.session;
+
         this.foreground = new ForegroundService();
     }
 
@@ -111,19 +114,6 @@ export default class ReactNativeApiRTC extends React.Component {
         apiRTC.setLogLevel(10);
 
         this.setState({ remoteListSrc: new Map(), remoteList: new Map() })
-
-        this.ua = new apiRTC.UserAgent({
-            //cloudUrl: 'https://cloud.apizee.com',
-            uri: 'apzkey:myDemoApiKey'
-        });
-
-        this.ua.register()
-            .then((session) => {
-                this.connectedSession = session;
-            })
-            .catch((err) => {
-                console.error(err);
-            });
 
         if (Platform.OS === 'ios') {
             this.screenCaptureView = createRef(null);
@@ -488,6 +478,7 @@ export default class ReactNativeApiRTC extends React.Component {
     }
 
     render() {
+
         function setRoom(ctx, value) {
             ctx.state.roomName = value;
         }
@@ -503,6 +494,9 @@ export default class ReactNativeApiRTC extends React.Component {
                     />
                     <Pressable style={styles.button} onPress={() => { ctx.call() }}>
                         <Text style={styles.text}>Video call</Text>
+                    </Pressable>
+                    <Pressable style={styles.button} onPress={() => { ctx.props.func() }}>
+                        <Text style={styles.text}>Back</Text>
                     </Pressable>
                 </View>
             );
