@@ -678,38 +678,40 @@ export default class ReactNativeApiRTC extends React.Component {
         function renderDialog(ctx) {
             if (ctx.state.status !== 'onCall' || ctx.state.menuOpen !== true) return null;
             return (
-                <View style={styles.dialogContainer}>
-                    <View style={styles.dialogBox}>
-                        {/*If you need to add a element to the menu*/}
-                        {/*Just copy paste TouchableOpacity element*/}
-                        <TouchableOpacity
-                            onPress={() => { ctx.switchCamera() }}
-                            style={styles.touchDialog}>
-                            <View style={styles.contentDialogCountainer}>
-                                <View style={styles.svgDialog}>
-                                    <Switch_camera />
+                <TouchableOpacity onPress={() => { ctx.menu() }} style={styles.behindMenuRemoteContainer}>
+                    <View style={styles.dialogContainer}>
+                        <View style={styles.dialogBox}>
+                            {/*If you need to add a element to the menu*/}
+                            {/*Just copy paste TouchableOpacity element*/}
+                            <TouchableOpacity
+                                onPress={() => { ctx.switchCamera() }}
+                                style={styles.touchDialog}>
+                                <View style={styles.contentDialogCountainer}>
+                                    <View style={styles.svgDialog}>
+                                        <Switch_camera />
+                                    </View>
+                                    <View style={styles.testDialog}>
+                                        <Text style={{ color: '#BBCCDD' }}>Switch camera</Text>
+                                    </View>
                                 </View>
-                                <View style={styles.testDialog}>
-                                    <Text style={{ color: '#BBCCDD' }}>Switch camera</Text>
+                            </TouchableOpacity>
+                            {/*End here*/}
+                            <TouchableOpacity
+                                onPress={() => { ctx.recordingManager() }}
+                                style={styles.touchDialog}>
+                                <View style={styles.contentDialogCountainer}>
+                                    <View style={styles.svgDialog}>
+                                        <Camera_record />
+                                    </View>
+                                    <View style={styles.testDialog}>
+                                        {recordText(ctx)}
+                                    </View>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                        {/*End here*/}
-                        <TouchableOpacity
-                            onPress={() => { ctx.recordingManager() }}
-                            style={styles.touchDialog}>
-                            <View style={styles.contentDialogCountainer}>
-                                <View style={styles.svgDialog}>
-                                    <Camera_record />
-                                </View>
-                                <View style={styles.testDialog}>
-                                    {recordText(ctx)}
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        {/*End here*/}
+                            </TouchableOpacity>
+                            {/*End here*/}
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             );
         }
 
